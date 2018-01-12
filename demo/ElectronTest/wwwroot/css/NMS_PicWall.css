@@ -1,0 +1,31 @@
+body{overflow:hidden;height:auto;}
+*{margin:0;padding:0;background-color:#141414;}
+.NMS_Template{
+	z-index:1;
+	position:absolute;
+	transition:0.35s linear;
+	-moz-transition:0.35s linear;
+	-webkit-transition:0.35s linear;
+	-o-transition:0.35s linear;
+	
+	
+}
+
+.NMS_Layout{
+		padding:0;
+		background-color:green;
+		background-attachment:fixed;
+		box-shadow: 8px 8px 8px #000000; 
+		background-size:cover;
+		position:absolute;
+		transition:0.35s linear;
+		-moz-transition:0.35s linear;
+		-webkit-transition:0.35s linear;
+		-o-transition:0.35s linear;
+		z-index:2;
+		
+}
+.NMS_Reflect{
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent) , to(rgba(255, 255, 255, 0.5)));
+}
+

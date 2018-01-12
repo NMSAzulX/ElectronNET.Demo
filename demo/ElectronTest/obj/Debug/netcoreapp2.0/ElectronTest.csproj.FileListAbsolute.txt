@@ -1,0 +1,8 @@
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\bin\Debug\netcoreapp2.0\ElectronTest.deps.json
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\bin\Debug\netcoreapp2.0\ElectronTest.runtimeconfig.json
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\bin\Debug\netcoreapp2.0\ElectronTest.runtimeconfig.dev.json
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\bin\Debug\netcoreapp2.0\ElectronTest.dll
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\obj\Debug\netcoreapp2.0\ElectronTest.csprojResolveAssemblyReference.cache
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\obj\Debug\netcoreapp2.0\ElectronTest.csproj.CoreCompileInputs.cache
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\obj\Debug\netcoreapp2.0\ElectronTest.AssemblyInfoInputs.cache
+c:\users\administrator\documents\visual studio 2017\Projects\ElectronTest\obj\Debug\netcoreapp2.0\ElectronTest.AssemblyInfo.cs

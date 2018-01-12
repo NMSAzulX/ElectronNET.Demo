@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<link type="text/css" rel="stylesheet" href="css/animate.min.css" />
+<link rel="stylesheet" href="css/hourglass.css">
+<link rel="stylesheet" href="css/rippler.css">
+<style>
+	body{
+		background-color:#1a1a1a;
+		overflow:hidden;
+		margin:0;
+		padding:0;
+	}
+	canvas{
+		z-index:0;
+	}
+	
+	.NMS_Template{
+		z-index:1;
+		width:80%;
+		height:80%;
+		top:8%;
+		left:9%;
+		position:absolute;
+		padding:10px;
+		-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent) , to(rgba(255, 255, 255, 0.5)));
+	}
+	.NMS_Layout{
+		box-shadow: 8px 8px 8px #000000; 
+		background-attachment:fixed;
+		background-size:cover;
+		width:23%;
+		height:32%;
+		position:relative;
+		float:left;
+		transition:0.2s linear;
+		-moz-transition:0.2s linear;
+		-webkit-transition:0.2s linear;
+		-o-transition:0.2s linear;
+	}
+	.NMS_Layout:hover{
+		transform: scale(1.4,1.2);
+		-ms-transform: scale(1.4,1.2);	/* IE 9 */
+		-webkit-transform: scale(1.4,1.2);	/* Safari 和 Chrome */
+		-o-transform: scale(1.4,1.2);	/* Opera */
+		-moz-transform: scale(1.4,1.2);	/* Firefox */
+		z-index:10;
+		opacity:1;
+	}
+	.NMS_Menu{
+		width:100%;
+		height:100%;
+		text-align:center;
+		color:Rgba(220,250,240,1);
+	}
+	.NMS_LayoutTitle{
+		display: block;
+		width:100%;
+		height:50%;
+		margin:25% 0;
+		z-index:20;
+	}
+	.NMS_LayoutCover{
+		background-color:Rgba(0,0,0,0.26);
+		width:100%;
+		height:100%;
+		position:absolute;
+		transition:0.2s linear;
+		-moz-transition:0.2s linear;
+		-webkit-transition:0.2s linear;
+		-o-transition:0.2s linear;
+	}
+	.NMS_LayoutCover:hover{
+		background-color:Rgba(0,0,0,0);
+	}
+	.NMS_SubFrame{
+		margin:0;
+		position:absolute;
+		left:0;
+		top:0;
+		background-attachment:fixed;
+		background-image:url("image/1.jpg");
+		transition:0.32s linear;
+		-moz-transition:0.32s linear;
+		-webkit-transition:0.32s linear;
+		-o-transition:0.32s linear;
+		transform: scale(0,0);
+		-ms-transform: scale(0,0);	
+		-webkit-transform: scale(0,0);	
+		-o-transform: scale(0,0);	
+		-moz-transform: scale(0,0);
+		width:100%;
+		height:100%;
+		opacity:0.1
+	}
+	.NMS_ResizeFrame{
+		overflow:hidden;
+		transform: scale(1,1);
+		-ms-transform: scale(1,1);	
+		-webkit-transform: scale(1,1);	
+		-o-transform: scale(1,1);
+		-moz-transform: scale(1,1);
+		z-index:11;
+		opacity:1;
+	}
+</style>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.rippler.js"></script>
+<script type="text/javascript">
+  function FontAction(x) {
+    
+    $('.animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass();
+      $(this).addClass("animationSandbox");
+    });
+  };
+
+  $(document).ready(function(){
+	$('.wrapper').hide();
+	$('body').css({"background-image":'url("image/16.jpg")',"background-size":"cover"});
+	var divImage="image/16.jpg";
+	$('.NMS_Layout').each(function(i){
+		var sliderWidth = i-Math.floor(i/4)*4;
+		var tWidth=sliderWidth*$(this).width+"px";
+		var sliderHeight = Math.floor(i/4);
+		var tHeight=sliderHeight*$(this).height+"px";
+		
+		$(this).css({
+		"background-image":"url("+divImage+")",
+		"background-position":tWidth+" "+tHeight
+		});
+		$(this).addClass("rippler");
+		$(this).addClass("rippler-img");
+		$(this).addClass("rippler-bs-primary");
+	});
+	$(".rippler").rippler({
+	         addElement:"svg"
+	      });
+    setTimeout(function(){$('.NMS_Layout').each(function(i){$(this).css({"margin":"0.5%"});});},1600);
+    $('.NMS_Layout').mouseenter(function(){
+      var anim ="flash";
+      var obj = $(this).children("div:first").children("span.animationSandbox").removeClass().addClass("flash animated").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass();
+      $(this).addClass("animationSandbox");
+    });
+    });
+	 $('.NMS_Layout').each(function(i){
+		$(this).attr("index",i);
+	 });
+	$('.NMS_Layout').click(function(){
+			$('.NMS_SubFrame[index='+$(this).attr("index")+']').addClass("NMS_ResizeFrame");
+	});
+	$('#back').click(function(){$(this).parent().removeClass("NMS_ResizeFrame")});
+  
+  
+  
+  
+  
+  });
+
+</script>
+<script src="js/rainyday.min.js"></script>
+        <script>
+            function run() {
+                var image = document.getElementById('background');
+                image.onload = function() {
+                    var engine = new RainyDay({
+                        image: this,
+                        gravityAngle: Math.PI / 9
+                    });
+                    engine.trail = engine.TRAIL_SMUDGE;
+                    engine.rain([ [2, 3, 0.5], [5, 6, 0.2], [6, 2, 1] ], 80);
+					
+                };
+                image.src = 'image/16.jpg';
+           }
+        </script>
+</head>
+<body onload="run();">
+<div style="margin-top:15%;z-index:10;" class="wrapper">
+	<div class="loader">
+		<div class="timerWrap">
+			<svg version="1.1" viewBox="131.623 175.5 120 160" preserveAspectRatio="xMinYMin meet" class="timer">
+			<path fill="#FFFFFF" d="M212.922,255.45l36.855-64.492c1.742-3.069,1.742-6.836-0.037-9.896c-1.783-3.06-5.037-4.938-8.581-4.938
+			h-99.158c-3.524,0-6.797,1.878-8.569,4.938c-1.773,3.06-1.792,6.827-0.03,9.896l36.846,64.491l-36.845,64.492
+			c-1.762,3.068-1.743,6.836,0.03,9.896c1.772,3.061,5.044,4.938,8.569,4.938h99.158c3.544,0,6.798-1.878,8.581-4.938
+			c1.779-3.06,1.779-6.827,0.037-9.896L212.922,255.45z M142.001,324.86l39.664-69.41l-39.664-69.41h99.158l-39.663,69.41
+			l39.663,69.41H142.001z"/>
+			</svg>
+		</div>
+	</div>
+</div>
+<script>$('.wrapper').show();</script>
+
+<div style="position:absolute;background-color:Rgba(0,0,0,0.3);width:100%;height:100%;">
+	
+</div>
+<div class="NMS_Template">
+
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">仿Win8布局</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">You and Me</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">Svg Loading</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">Canvas Rain</h1></span>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">晚</h1></span>
+		</div>
+		  
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">城</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">之</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">约</h1></span>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">Jquery LanX</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">Css3 LanX</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">NMS.Layout</h1></span>
+		</div>
+	</div>
+	<div class="NMS_Layout">
+		<div class="NMS_LayoutCover">
+			<span class="animationSandbox" style="display: block;width:100%;height:50%;margin:25% 0;z-index:5"><h1 class="site__title mega NMS_Menu">Tks!</h1></span>
+		</div>
+	</div>
+	
+</div>
+		<div class="NMS_SubFrame" index="0">
+			<iframe src ="file:///C:/Users/Administrator/Desktop/vmFile/%E5%AD%A6%E4%B9%A0/Web%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/Kendo%20UI/Test/NMS/%E5%8D%8A%E5%AD%97%E5%80%92%E5%BD%B1.html" style="width:100%;height:100%;">
+			</iframe>
+		</div>
+	<img id="background" alt="background" src="" style="width:100%;height:100%" />
+
+</body>
+</html>
